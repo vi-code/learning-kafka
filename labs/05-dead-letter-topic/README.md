@@ -16,13 +16,13 @@ In this milestone:
 Terminal 1:
 
 ```bash
-npm run lab:05:consumer
+python labs/05-dead-letter-topic/consumer.py
 ```
 
 Terminal 2:
 
 ```bash
-npm run lab:05:producer
+python labs/05-dead-letter-topic/producer.py
 ```
 
 Watch the consumer output. Some messages should be processed, and some should be forwarded to the dead-letter topic.
@@ -32,13 +32,13 @@ Watch the consumer output. Some messages should be processed, and some should be
 Use the same consumer with a different topic by running:
 
 ```bash
-TOPIC_SUFFIX=payments.dead-letter GROUP_ID=dead-letter-reader npm run lab:04:consumer
+TOPIC_SUFFIX=payments.dead-letter GROUP_ID=dead-letter-reader python labs/04-offsets-replay/consumer.py
 ```
 
 On Windows PowerShell:
 
 ```powershell
-$env:TOPIC_SUFFIX="payments.dead-letter"; $env:GROUP_ID="dead-letter-reader"; npm run lab:04:consumer
+$env:TOPIC_SUFFIX="payments.dead-letter"; $env:GROUP_ID="dead-letter-reader"; python labs/04-offsets-replay/consumer.py
 ```
 
 ## Reflection
@@ -48,4 +48,3 @@ Answer in your own words:
 - Why not crash forever on one bad message?
 - What information should a dead-letter event include?
 - When should a team alert on dead-letter messages?
-

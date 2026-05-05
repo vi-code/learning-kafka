@@ -11,13 +11,13 @@ This milestone teaches the basic Kafka loop:
 Terminal 1:
 
 ```bash
-npm run lab:01:consumer
+python labs/01-producer-consumer/consumer.py
 ```
 
 Terminal 2:
 
 ```bash
-npm run lab:01:producer
+python labs/01-producer-consumer/producer.py
 ```
 
 You should see the consumer print the messages sent by the producer.
@@ -26,8 +26,8 @@ You should see the consumer print the messages sent by the producer.
 
 Read these files:
 
-- `labs/01-producer-consumer/producer.js`
-- `labs/01-producer-consumer/consumer.js`
+- `labs/01-producer-consumer/producer.py`
+- `labs/01-producer-consumer/consumer.py`
 
 Notice:
 
@@ -40,7 +40,7 @@ Notice:
 Pass your own message:
 
 ```bash
-node labs/01-producer-consumer/producer.js "Kafka is starting to make sense"
+python labs/01-producer-consumer/producer.py "Kafka is starting to make sense"
 ```
 
 ## Reflection
@@ -50,4 +50,3 @@ Answer in your own words:
 - What does the producer know about the consumer?
 - What does the consumer know about the producer?
 - Why is it useful that they do not call each other directly?
-

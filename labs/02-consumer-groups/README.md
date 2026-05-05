@@ -9,19 +9,19 @@ Kafka assigns partitions to consumers in the same group. One partition is consum
 Terminal 1:
 
 ```bash
-npm run lab:02:consumer
+python labs/02-consumer-groups/consumer.py
 ```
 
 Terminal 2:
 
 ```bash
-npm run lab:02:consumer
+python labs/02-consumer-groups/consumer.py
 ```
 
 Terminal 3:
 
 ```bash
-npm run lab:02:producer
+python labs/02-consumer-groups/producer.py
 ```
 
 Watch how the two consumers split messages.
@@ -31,7 +31,7 @@ Watch how the two consumers split messages.
 Start a third consumer with the same group:
 
 ```bash
-npm run lab:02:consumer
+python labs/02-consumer-groups/consumer.py
 ```
 
 Because `lab.orders` has three partitions, up to three consumers can actively share work.
@@ -45,4 +45,3 @@ Answer in your own words:
 - Why does partition count limit parallelism?
 - What happens if a consumer crashes?
 - Why might you use the same group id in production?
-

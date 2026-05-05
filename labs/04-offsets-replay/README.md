@@ -15,13 +15,13 @@ That means:
 First, produce some order events:
 
 ```bash
-npm run lab:02:producer
+python labs/02-consumer-groups/producer.py
 ```
 
 Now consume them with the default replay group:
 
 ```bash
-npm run lab:04:consumer
+python labs/04-offsets-replay/consumer.py
 ```
 
 Stop the consumer with Ctrl+C, then run it again. It should not print the same old messages, because the group already committed offsets.
@@ -29,13 +29,13 @@ Stop the consumer with Ctrl+C, then run it again. It should not print the same o
 Now change the group id:
 
 ```bash
-GROUP_ID=replay-demo-v2 npm run lab:04:consumer
+GROUP_ID=replay-demo-v2 python labs/04-offsets-replay/consumer.py
 ```
 
 On Windows PowerShell:
 
 ```powershell
-$env:GROUP_ID="replay-demo-v2"; npm run lab:04:consumer
+$env:GROUP_ID="replay-demo-v2"; python labs/04-offsets-replay/consumer.py
 ```
 
 The new group can read from the beginning.
@@ -47,4 +47,3 @@ Answer in your own words:
 - What does Kafka store?
 - What does the consumer group store?
 - Why is replay useful for debugging or rebuilding a service?
-

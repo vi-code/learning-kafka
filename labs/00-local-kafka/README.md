@@ -30,10 +30,10 @@ Offset: the position of a message inside a partition.
 From the repo root:
 
 ```bash
-npm install
-npm run kafka:up
-npm run topics:create
-npm run topics:list
+python -m pip install -r requirements.txt
+docker compose up -d
+python labs/00-local-kafka/create_topics.py
+python labs/00-local-kafka/list_topics.py
 ```
 
 Expected topic names:
@@ -45,12 +45,12 @@ Expected topic names:
 
 ## Try This
 
-Open `lib/topics.js`, change the `lab.orders` partition count from `3` to `4`, then run:
+Open `lab_kafka/topics.py`, change the `lab.orders` partition count from `3` to `4`, then run:
 
 ```bash
-npm run topics:delete
-npm run topics:create
-npm run topics:list
+python labs/00-local-kafka/delete_topics.py
+python labs/00-local-kafka/create_topics.py
+python labs/00-local-kafka/list_topics.py
 ```
 
 That is your first infrastructure change.
@@ -61,4 +61,3 @@ Write a short note in your own words:
 
 - What is a topic?
 - Why might a topic need more than one partition?
-

@@ -5,7 +5,7 @@ A hands-on Kafka lab for absolute beginners. The goal is to learn Kafka by runni
 This repo is intentionally simple:
 
 - Kafka runs locally in Docker.
-- Examples are plain JavaScript using Node.js and KafkaJS.
+- Examples are plain Python using `confluent-kafka`.
 - Each milestone focuses on one Kafka concept.
 - The code is small enough to read before you run it.
 
@@ -29,7 +29,7 @@ By the end of the implemented milestones, you will understand:
 Install these first:
 
 - [Docker Desktop](https://www.docker.com/products/docker-desktop/)
-- [Node.js](https://nodejs.org/) 20 or newer
+- [Python](https://www.python.org/downloads/) 3.11 or newer
 - Git, if you want to commit your progress
 
 ## Quick Start
@@ -37,37 +37,37 @@ Install these first:
 Install dependencies:
 
 ```bash
-npm install
+python -m pip install -r requirements.txt
 ```
 
 Start Kafka:
 
 ```bash
-npm run kafka:up
+docker compose up -d
 ```
 
 Create the lab topics:
 
 ```bash
-npm run topics:create
+python labs/00-local-kafka/create_topics.py
 ```
 
 Run your first consumer in one terminal:
 
 ```bash
-npm run lab:01:consumer
+python labs/01-producer-consumer/consumer.py
 ```
 
 Run your first producer in another terminal:
 
 ```bash
-npm run lab:01:producer
+python labs/01-producer-consumer/producer.py
 ```
 
 When you are done:
 
 ```bash
-npm run kafka:down
+docker compose down
 ```
 
 ## Milestones
@@ -78,7 +78,7 @@ Files:
 
 - `docker-compose.yml`
 - `labs/00-local-kafka/README.md`
-- `labs/00-local-kafka/create-topics.js`
+- `labs/00-local-kafka/create_topics.py`
 
 You will start a single-node Kafka cluster and create topics manually. This teaches you that Kafka is infrastructure first: producers and consumers are clients that connect to a broker.
 
@@ -87,8 +87,8 @@ You will start a single-node Kafka cluster and create topics manually. This teac
 Files:
 
 - `labs/01-producer-consumer/README.md`
-- `labs/01-producer-consumer/producer.js`
-- `labs/01-producer-consumer/consumer.js`
+- `labs/01-producer-consumer/producer.py`
+- `labs/01-producer-consumer/consumer.py`
 
 You will publish events to a topic and read them back. This is the smallest useful Kafka loop.
 
@@ -97,8 +97,8 @@ You will publish events to a topic and read them back. This is the smallest usef
 Files:
 
 - `labs/02-consumer-groups/README.md`
-- `labs/02-consumer-groups/producer.js`
-- `labs/02-consumer-groups/consumer.js`
+- `labs/02-consumer-groups/producer.py`
+- `labs/02-consumer-groups/consumer.py`
 
 You will run multiple consumers with the same group id and watch Kafka split partitions between them.
 
@@ -107,8 +107,8 @@ You will run multiple consumers with the same group id and watch Kafka split par
 Files:
 
 - `labs/03-partitions-keys/README.md`
-- `labs/03-partitions-keys/producer.js`
-- `labs/03-partitions-keys/consumer.js`
+- `labs/03-partitions-keys/producer.py`
+- `labs/03-partitions-keys/consumer.py`
 
 You will send keyed messages and observe that Kafka uses keys to choose partitions. This is how you preserve ordering for related events.
 
@@ -117,7 +117,7 @@ You will send keyed messages and observe that Kafka uses keys to choose partitio
 Files:
 
 - `labs/04-offsets-replay/README.md`
-- `labs/04-offsets-replay/consumer.js`
+- `labs/04-offsets-replay/consumer.py`
 
 You will learn why Kafka can replay old events, and why changing a consumer group id changes what the consumer sees.
 
@@ -126,8 +126,8 @@ You will learn why Kafka can replay old events, and why changing a consumer grou
 Files:
 
 - `labs/05-dead-letter-topic/README.md`
-- `labs/05-dead-letter-topic/producer.js`
-- `labs/05-dead-letter-topic/consumer.js`
+- `labs/05-dead-letter-topic/producer.py`
+- `labs/05-dead-letter-topic/consumer.py`
 
 You will process payment events, detect invalid messages, and publish failures to a dead-letter topic for later inspection.
 
@@ -153,13 +153,13 @@ This makes the repo useful as both a portfolio project and a record of how your 
 ## Useful Commands
 
 ```bash
-npm run kafka:up          # start Kafka
-npm run kafka:down        # stop Kafka
-npm run kafka:logs        # follow Kafka logs
-npm run topics:create     # create all lab topics
-npm run topics:list       # list topics
-npm run topics:delete     # delete lab topics
-npm run check             # syntax-check lab scripts
+docker compose up -d                          # start Kafka
+docker compose down                           # stop Kafka
+docker compose logs -f kafka                  # follow Kafka logs
+python labs/00-local-kafka/create_topics.py   # create all lab topics
+python labs/00-local-kafka/list_topics.py     # list topics
+python labs/00-local-kafka/delete_topics.py   # delete lab topics
+python -m compileall lab_kafka labs           # syntax-check lab scripts
 ```
 
 ## Troubleshooting

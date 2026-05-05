@@ -10,8 +10,8 @@ The tone should stay beginner-friendly, practical, and encouraging. Avoid assumi
 
 ## Current Stack
 
-- Runtime: Node.js 20+ with ES modules.
-- Kafka client: KafkaJS.
+- Runtime: Python 3.11+.
+- Kafka client: `confluent-kafka`.
 - Local infrastructure: Docker Compose running Bitnami Kafka in KRaft mode.
 - Main local broker URL: `localhost:9092`.
 
@@ -19,9 +19,9 @@ The tone should stay beginner-friendly, practical, and encouraging. Avoid assumi
 
 - `README.md`: top-level learning path, quick start, milestones, GitHub story, troubleshooting.
 - `docker-compose.yml`: single-node local Kafka.
-- `package.json`: npm scripts for Kafka, topic management, and each lab.
-- `lib/kafka.js`: shared KafkaJS client helpers.
-- `lib/topics.js`: lab topic definitions.
+- `requirements.txt`: Python dependency lock point for learners.
+- `lab_kafka/client.py`: shared Kafka client helpers.
+- `lab_kafka/topics.py`: lab topic definitions.
 - `labs/00-local-kafka`: start Kafka, create/list/delete topics, learn vocabulary.
 - `labs/01-producer-consumer`: first producer and consumer.
 - `labs/02-consumer-groups`: multiple consumers sharing partitions.
@@ -45,7 +45,7 @@ Good future milestones:
 - Retries and idempotent producers.
 - Consumer lag.
 - Kafka Connect concepts.
-- Stream processing with Kafka Streams or a lightweight Node equivalent.
+- Stream processing with a lightweight Python stream-processing example.
 - Observability and dashboards.
 
 ## Commands
@@ -53,31 +53,31 @@ Good future milestones:
 Install dependencies:
 
 ```bash
-npm install
+python -m pip install -r requirements.txt
 ```
 
 Start Kafka:
 
 ```bash
-npm run kafka:up
+docker compose up -d
 ```
 
 Create topics:
 
 ```bash
-npm run topics:create
+python labs/00-local-kafka/create_topics.py
 ```
 
 Run checks:
 
 ```bash
-npm run check
+python -m compileall lab_kafka labs
 ```
 
 Stop Kafka:
 
 ```bash
-npm run kafka:down
+docker compose down
 ```
 
 ## Conventions
@@ -93,8 +93,8 @@ npm run kafka:down
 
 Last validated locally:
 
-- `npm install`
-- `npm run check`
+- `python -m pip install -r requirements.txt`
+- `python -m compileall lab_kafka labs`
 - `docker compose config`
 
 Kafka was not left running as part of setup.
@@ -114,4 +114,3 @@ Suggested description:
 ```text
 Hands-on Kafka learning lab for beginners.
 ```
-
