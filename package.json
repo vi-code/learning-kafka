@@ -1,0 +1,32 @@
+{
+  "name": "learning-kafka",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Hands-on Kafka learning lab for beginners.",
+  "type": "module",
+  "scripts": {
+    "kafka:up": "docker compose up -d",
+    "kafka:down": "docker compose down",
+    "kafka:logs": "docker compose logs -f kafka",
+    "topics:create": "node labs/00-local-kafka/create-topics.js",
+    "topics:list": "node labs/00-local-kafka/list-topics.js",
+    "topics:delete": "node labs/00-local-kafka/delete-topics.js",
+    "lab:01:producer": "node labs/01-producer-consumer/producer.js",
+    "lab:01:consumer": "node labs/01-producer-consumer/consumer.js",
+    "lab:02:producer": "node labs/02-consumer-groups/producer.js",
+    "lab:02:consumer": "node labs/02-consumer-groups/consumer.js",
+    "lab:03:producer": "node labs/03-partitions-keys/producer.js",
+    "lab:03:consumer": "node labs/03-partitions-keys/consumer.js",
+    "lab:04:consumer": "node labs/04-offsets-replay/consumer.js",
+    "lab:05:producer": "node labs/05-dead-letter-topic/producer.js",
+    "lab:05:consumer": "node labs/05-dead-letter-topic/consumer.js",
+    "check": "node --check lib/kafka.js && node --check lib/topics.js && node --check labs/00-local-kafka/create-topics.js && node --check labs/00-local-kafka/list-topics.js && node --check labs/00-local-kafka/delete-topics.js && node --check labs/01-producer-consumer/producer.js && node --check labs/01-producer-consumer/consumer.js && node --check labs/02-consumer-groups/producer.js && node --check labs/02-consumer-groups/consumer.js && node --check labs/03-partitions-keys/producer.js && node --check labs/03-partitions-keys/consumer.js && node --check labs/04-offsets-replay/consumer.js && node --check labs/05-dead-letter-topic/producer.js && node --check labs/05-dead-letter-topic/consumer.js"
+  },
+  "dependencies": {
+    "kafkajs": "^2.2.4"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
+
