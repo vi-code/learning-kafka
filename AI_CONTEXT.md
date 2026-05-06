@@ -10,7 +10,7 @@ The tone should stay beginner-friendly, practical, and encouraging. Avoid assumi
 
 ## Current Stack
 
-- Runtime: Python 3.11+.
+- Runtime: Python 3.11+ in a repo-local virtual environment when possible.
 - Kafka client: `confluent-kafka`.
 - Local infrastructure: Docker Compose running the official Apache Kafka image.
 - Main local broker URL: `localhost:9092`.
@@ -28,6 +28,7 @@ The tone should stay beginner-friendly, practical, and encouraging. Avoid assumi
 - `labs/03-partitions-keys`: keys, partitions, and ordering.
 - `labs/04-offsets-replay`: offsets, consumer groups, and replay.
 - `labs/05-dead-letter-topic`: validation failures and dead-letter topic pattern.
+- `LEARNING_GUIDE.md`: beginner learning path and study guide.
 
 ## Learning Design
 
@@ -53,6 +54,8 @@ Good future milestones:
 Install dependencies:
 
 ```bash
+python3 -m venv .venv
+source .venv/bin/activate
 python -m pip install -r requirements.txt
 ```
 

@@ -11,6 +11,8 @@ This repo is intentionally simple:
 
 Future AI chats should read `AI_CONTEXT.md` first. It captures the project purpose, conventions, and next milestone ideas.
 
+If you are learning Kafka from scratch, read `LEARNING_GUIDE.md` before diving into the code. It explains what each lab is teaching and how to study it.
+
 ## What You Will Learn
 
 By the end of the implemented milestones, you will understand:
@@ -37,7 +39,34 @@ Install these first:
 Install dependencies:
 
 ```bash
+python3 -m venv .venv
+source .venv/bin/activate
 python -m pip install -r requirements.txt
+```
+
+If activation fails, try the shell-specific form:
+
+```bash
+bash/zsh: source .venv/bin/activate
+fish: source .venv/bin/activate.fish
+```
+
+You can also skip activation entirely and call the venv interpreter directly:
+
+```bash
+.venv/bin/python -m pip install -r requirements.txt
+```
+
+Verify the Kafka client import:
+
+```bash
+python -c "import confluent_kafka; print(confluent_kafka.__version__)"
+```
+
+Without activation:
+
+```bash
+.venv/bin/python -c "import confluent_kafka; print(confluent_kafka.__version__)"
 ```
 
 Start Kafka:
@@ -71,6 +100,8 @@ docker compose down
 ```
 
 ## Milestones
+
+### Beginner Track
 
 ### Milestone 0: Local Kafka
 
@@ -200,3 +231,21 @@ docker compose up -d
 If topics already exist, that is fine. The topic creation script skips existing topics.
 
 If a consumer seems stuck, it may simply be waiting for new events. Run the matching producer in another terminal.
+
+If you see `ModuleNotFoundError: No module named 'confluent_kafka'` inside WSL, install the dependency in that same WSL shell and interpreter:
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install -r requirements.txt
+python -c "import confluent_kafka; print(confluent_kafka.__version__)"
+```
+
+If activation keeps failing, use:
+
+```bash
+.venv/bin/python -m pip install -r requirements.txt
+.venv/bin/python -c "import confluent_kafka; print(confluent_kafka.__version__)"
+```
+
+If you see `error: externally-managed-environment`, your distro is blocking global pip installs. Stay inside `.venv` instead of using `sudo pip` or `--break-system-packages`.
