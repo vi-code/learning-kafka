@@ -28,7 +28,11 @@ The tone should stay beginner-friendly, practical, and encouraging. Avoid assumi
 - `labs/03-partitions-keys`: keys, partitions, and ordering.
 - `labs/04-offsets-replay`: offsets, consumer groups, and replay.
 - `labs/05-dead-letter-topic`: validation failures and dead-letter topic pattern.
-- `LEARNING_GUIDE.md`: beginner learning path and study guide.
+- `labs/06-producer-guarantees`: stronger producer settings for enterprise traffic.
+- `labs/07-retry-topics`: retry topics, replay, and parking lot flows.
+- `labs/08-schema-evolution`: tolerant readers and versioned event shapes.
+- `labs/09-consumer-lag`: partition-level lag inspection for operations.
+- `LEARNING_GUIDE.md`: beginner and enterprise learning path.
 
 ## Learning Design
 
@@ -48,6 +52,9 @@ Good future milestones:
 - Kafka Connect concepts.
 - Stream processing with a lightweight Python stream-processing example.
 - Observability and dashboards.
+- Multi-broker clusters, replication, and leader failover.
+- Security concepts such as ACLs, SASL, and secrets handling.
+- MirrorMaker, cross-region replication, and disaster recovery patterns.
 
 ## Commands
 

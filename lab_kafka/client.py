@@ -21,19 +21,37 @@ def admin_client() -> AdminClient:
     return AdminClient({"bootstrap.servers": brokers()})
 
 
-def producer() -> Producer:
-    return Producer({"bootstrap.servers": brokers()})
+def producer(config: dict | None = None) -> Producer:
+    producer_config = {"bootstrap.servers": brokers()}
+    if config:
+        producer_config.update(config)
+
+    return Producer(producer_config)
 
 
-def consumer(group_id: str) -> Consumer:
-    return Consumer(
+def enterprise_producer() -> Producer:
+    return producer(
         {
-            "bootstrap.servers": brokers(),
-            "group.id": group_id,
-            "auto.offset.reset": "earliest",
-            "enable.auto.commit": False,
+            "acks": "all",
+            "enable.idempotence": True,
+            "compression.type": "snappy",
+            "linger.ms": 25,
+            "batch.size": 131072,
         }
     )
+
+
+def consumer(group_id: str, config: dict | None = None) -> Consumer:
+    consumer_config = {
+        "bootstrap.servers": brokers(),
+        "group.id": group_id,
+        "auto.offset.reset": "earliest",
+        "enable.auto.commit": False,
+    }
+    if config:
+        consumer_config.update(config)
+
+    return Consumer(consumer_config)
 
 
 def encode_event(event: dict) -> str:
@@ -61,3 +79,7 @@ def delivery_report(error, message) -> None:
             "offset": message.offset(),
         }
     )
+
+
+def commit_message(kafka_consumer: Consumer, message) -> None:
+    kafka_consumer.commit(message=message, asynchronous=False)

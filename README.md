@@ -25,6 +25,10 @@ By the end of the implemented milestones, you will understand:
 - Why message keys matter.
 - How offsets make replay possible.
 - How to handle bad messages with a dead-letter topic.
+- How stronger producer guarantees work.
+- How teams model retries and parking lot topics.
+- How schema evolution affects long-lived event streams.
+- How to reason about consumer lag in production.
 
 ## Prerequisites
 
@@ -162,6 +166,48 @@ Files:
 
 You will process payment events, detect invalid messages, and publish failures to a dead-letter topic for later inspection.
 
+### Enterprise Track
+
+### Milestone 6: Producer Guarantees
+
+Files:
+
+- `labs/06-producer-guarantees/README.md`
+- `labs/06-producer-guarantees/producer.py`
+- `labs/06-producer-guarantees/consumer.py`
+
+You will learn why enterprise producers care about acknowledgements, batching, compression, and idempotence.
+
+### Milestone 7: Retry Topics And Parking Lots
+
+Files:
+
+- `labs/07-retry-topics/README.md`
+- `labs/07-retry-topics/seed_events.py`
+- `labs/07-retry-topics/process_main.py`
+- `labs/07-retry-topics/replay_retry.py`
+
+You will model transient failures, retries, and parking lots the way many production Kafka systems do.
+
+### Milestone 8: Schema Evolution
+
+Files:
+
+- `labs/08-schema-evolution/README.md`
+- `labs/08-schema-evolution/producer.py`
+- `labs/08-schema-evolution/consumer.py`
+
+You will learn why event contracts evolve carefully and why consumers should usually be tolerant readers.
+
+### Milestone 9: Consumer Lag
+
+Files:
+
+- `labs/09-consumer-lag/README.md`
+- `labs/09-consumer-lag/report.py`
+
+You will learn how teams inspect consumer lag and why it is one of the most important Kafka operational signals.
+
 ## Suggested GitHub Story
 
 Use commits as learning checkpoints:
@@ -180,6 +226,16 @@ git commit -m "Complete Kafka producer consumer milestone"
 ```
 
 This makes the repo useful as both a portfolio project and a record of how your understanding grew.
+
+## Recommended Learning Path
+
+Start here:
+
+1. `LEARNING_GUIDE.md`
+2. Milestones 1 through 5
+3. Milestones 6 through 9
+
+Treat milestones 1 through 5 as your fundamentals track and 6 through 9 as your enterprise track.
 
 ## Useful Commands
 
