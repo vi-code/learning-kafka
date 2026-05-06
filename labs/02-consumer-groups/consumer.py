@@ -1,5 +1,9 @@
 import os
+import sys
 import time
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 
 from lab_kafka.client import consumer, decode_message, topic_name
 

@@ -30,7 +30,6 @@ Offset: the position of a message inside a partition.
 From the repo root:
 
 ```bash
-python -m pip install -r requirements.txt
 docker compose up -d
 python labs/00-local-kafka/create_topics.py
 python labs/00-local-kafka/list_topics.py

@@ -1,4 +1,8 @@
 import os
+import sys
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 
 from lab_kafka.client import consumer, decode_message, topic_name
 
@@ -24,6 +28,18 @@ def main() -> None:
 
             event = decode_message(message)
             value = event["value"]
+
+            if value.get("type") != "CustomerActivityRecorded":
+                print(
+                    {
+                        "partition": message.partition(),
+                        "offset": message.offset(),
+                        "key": event["key"],
+                        "ignoredType": value.get("type"),
+                    }
+                )
+                kafka_consumer.commit(message=message, asynchronous=False)
+                continue
 
             print(
                 {

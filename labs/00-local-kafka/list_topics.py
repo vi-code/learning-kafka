@@ -1,3 +1,8 @@
+import sys
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
+
 from lab_kafka.client import admin_client, topic_prefix
 
 
@@ -7,7 +12,8 @@ def main() -> None:
     prefix = f"{topic_prefix()}."
 
     topics = sorted(
-        topic for topic in metadata.topics.values() if topic.topic.startswith(prefix)
+        (topic for topic in metadata.topics.values() if topic.topic.startswith(prefix)),
+        key=lambda topic: topic.topic,
     )
 
     if not topics:
@@ -21,4 +27,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-

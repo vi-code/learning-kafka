@@ -1,4 +1,9 @@
+import sys
+from pathlib import Path
+
 from confluent_kafka import KafkaException
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 
 from lab_kafka.client import admin_client
 from lab_kafka.topics import TOPICS
@@ -26,4 +31,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-
