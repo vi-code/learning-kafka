@@ -170,6 +170,33 @@ If a script cannot connect to Kafka, make sure Docker Desktop is running and Kaf
 docker compose ps
 ```
 
+### WSL And Docker Desktop
+
+If you run the lab inside WSL, Docker must be available inside that WSL distro, not only from Windows PowerShell.
+
+From your WSL shell, check:
+
+```bash
+docker info
+docker compose version
+docker pull apache/kafka:3.7.2
+```
+
+If `docker info` cannot connect to the daemon, open Docker Desktop on Windows and enable WSL integration for your distro:
+
+1. Open Docker Desktop.
+2. Go to Settings.
+3. Open Resources.
+4. Open WSL Integration.
+5. Enable integration for the distro where this repo is running.
+6. Restart the WSL shell.
+
+Then retry:
+
+```bash
+docker compose up -d
+```
+
 If topics already exist, that is fine. The topic creation script skips existing topics.
 
 If a consumer seems stuck, it may simply be waiting for new events. Run the matching producer in another terminal.

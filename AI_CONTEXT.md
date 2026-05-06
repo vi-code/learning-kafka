@@ -12,7 +12,7 @@ The tone should stay beginner-friendly, practical, and encouraging. Avoid assumi
 
 - Runtime: Python 3.11+.
 - Kafka client: `confluent-kafka`.
-- Local infrastructure: Docker Compose running Bitnami Kafka in KRaft mode.
+- Local infrastructure: Docker Compose running the official Apache Kafka image.
 - Main local broker URL: `localhost:9092`.
 
 ## Repository Layout
